@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if log %}
+<br><br><br>
+
+<div class="card my-5 w-100" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
+    <div class="card-body">
+    <h5 class="card-title"> <!-- kartın başslık yazısı -->
+        <br><b>AUTHENTICATE Başarısız Denemeler:</b>
+        <hr color:"#696969"></hr>
+    </h5>
+
+    <p class="card-text"> <!-- kartın içerik yazısı -->
+        <br>
+        
+        <table class="table table-bordered">
+
+            <tr>
+                <thead align="center" style="color:white;">
+                <td><b>DENEME</b></td>
+                <td><b>TARİH</b></td>
+                <td><b>HEDEF KULLANICI</b></td>
+                <td><b>KAYNAK KULLANICI</b></td>
+                </thead>
+             </tr>
+             <tbody>
+             {% for data in log %}
+             <tr style="color:white;">
+                <td>{{data.count}}</td>
+                <td>{{data.date}}</td>
+                <td>{{data.targetuser}}</td>
+                <td>{{data.resourceuser}}</td>
+             </tr>
+             {% endfor %}
+            </tbody>
+        </table>
+        
+            {% comment %} <p align="left" style="color:black;"><b>IP ADRESİ: </b>{{saved.Device_Ip}}</p><hr color:"#696969"></hr>
+            <p align="left" style="color:black;"><b>SYSTEM DESCRIPTION: </b>{{saved.System_Description}}</p><hr color:"#696969"></hr>
+            <p align="left" style="color:black;"><b>SYSTEM CONTACT: </b>{{saved.System_Contact}}</p><hr color:"#696969"></hr>
+            <p align="left" style="color:black;"><b>SYSTEM NAME: </b>{{saved.System_Name}}</p><hr color:"#696969"></hr>
+            <p align="left" style="color:black;"><b>SYSTEM LOCATION: </b>{{saved.System_Location}}</p><hr color:"#696969"></hr>
+         {% endcomment %}
+        
+    </p>
+
+    </div>
+</div>
+
+{% else %}
+        <br><br><br><br>
+        <b><p align="left" style="color:black;">Kayıtlı Veri Bulunmamaktadır.</p></b>
+        <br><br>
+        <hr color:"#696969">
+{% endif %}
+
+<br><br><br><br><br><br><br><br><br>
+{% else %}
+<br>
+<h1> Hata ! </h1>
+{% endif %}
+
+{% endblock %}
