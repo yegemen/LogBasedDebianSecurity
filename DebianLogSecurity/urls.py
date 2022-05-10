@@ -19,5 +19,6 @@ from django.urls import path,include
 urlpatterns = [
     path('', include('LoginRegister.urls')), # 127.0.0.1:8000/
     path('select/', include('LogData.urls')), # 127.0.0.1:8000/select
+    path('select/', include('Configuration.urls')), # 127.0.0.1:8000/select
     path('admin/', admin.site.urls), # 127.0.0.1:8000/admin
 ]

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br><br><br>
+
+
+
+
+{% else %}
+<br>
+<h1> Hata ! </h1>
+{% endif %}
+
+{% endblock %}
