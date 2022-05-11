@@ -2,33 +2,36 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-{% if log %}
+{% comment %} {% if log %}{% endcomment %}
 <br><br><br>
-
-<div class="card my-5 w-100" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
+<div class="row justify-content-center align-items-center">
+<div class="card my-5 w-75" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>Engellenen IP Adresleri:</b>
+        <br><b>Engellenen İstemciler:</b>
         <hr color:"#696969"></hr>
     </h5>
 
     <p class="card-text"> <!-- kartın içerik yazısı -->
         <br>
         
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="width:900px;">
 
             <tr>
                 <thead align="center" style="color:white;">
-                <td><b>IP Adresi</b></td>
                 <td><b>TARİH</b></td>
+                <td><b>IP ADRESİ</b></td>
+                <td><b>ENGELİ KALDIR</b></td>
                 </thead>
              </tr>
              <tbody>
-             {% comment %} {% for data in log %}
+             
              <tr style="color:white;">
-                <td></td>
-                <td></td>
+                <td>deneme</td>
+                <td>deneme</td>
+                <td align="center"><form action="{% url 'blocklist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
              </tr>
+             {% comment %} {% for data in log %}
              {% endfor %}{% endcomment %}
             </tbody>
         </table>
@@ -44,13 +47,14 @@
 
     </div>
 </div>
+</div>
 
-{% else %}
+{% comment %}{% else %}{% endcomment %}
         <br><br><br><br>
         <b><p align="left" style="color:black;">Kayıtlı Veri Bulunmamaktadır.</p></b>
         <br><br>
         <hr color:"#696969">
-{% endif %}
+{% comment %}{% endif %}{% endcomment %}
 
 <br><br><br><br><br><br><br><br><br>
 {% else %}

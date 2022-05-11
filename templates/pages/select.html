@@ -4,35 +4,35 @@
 {% if user.is_authenticated %}
 <br><br><br>
 
-<a href="{% url 'sshlist' %}" class="btn btn-danger btn-lg btn-block" value="sshlist">SSH Log</a> 
+<a href="{% url 'sshlist' %}" class="btn btn-danger btn-lg btn-block" value="sshlist" style="width:200px;">SSH Log</a> 
 
 <br><br>
 
-<a href="{% url 'ftplist' %}" class="btn btn-danger btn-lg btn-block" value="ftplish">FTP Log</a>
+<a href="{% url 'ftplist' %}" class="btn btn-danger btn-lg btn-block" value="ftplish" style="width:200px;"">FTP Log</a>
 
 <br><br>
 
-<a href="{% url 'authlist' %}" class="btn btn-danger btn-lg btn-block" value="authlist">Auth Log</a>
+<a href="{% url 'authlist' %}" class="btn btn-danger btn-lg btn-block" value="authlist" style="width:200px;">Auth Log</a>
 
 <br><br>
 
-<a href="{% url 'httplist' %}" class="btn btn-danger btn-lg btn-block" value="httplist">HTTP Login Log</a>
+<a href="{% url 'httplist' %}" class="btn btn-danger btn-lg btn-block" value="httplist" style="width:200px;">HTTP Login Log</a>
 
 <br><br>
 
-<a href="{% url 'fuzzinglist' %}" class="btn btn-danger btn-lg btn-block" value="fuzzinglist">Fuzzing Log</a>
+<a href="{% url 'fuzzinglist' %}" class="btn btn-danger btn-lg btn-block" value="fuzzinglist" style="width:200px;">Fuzzing Log</a>
+
+<br><br><br>
+
+<hr size="4" style="background-color:white;" />
 
 <br><br>
 
-<hr />
+<a href="{% url 'settings' %}" class="btn btn-danger btn-lg btn-block" value="settings" style="width:200px;">Ayarlar</a>
 
 <br><br>
 
-<a href="{% url 'settings' %}" class="btn btn-danger btn-lg btn-block" value="settings">Settings</a>
-
-<br><br>
-
-<a href="{% url 'blocklist' %}" class="btn btn-danger btn-lg btn-block" value="blocklist">Blocklist</a>
+<a href="{% url 'blocklist' %}" class="btn btn-danger btn-lg btn-block" value="blocklist" style="width:200px;">Engellenenler</a>
 
 <br><br><br><br><br>
 {% else %}
