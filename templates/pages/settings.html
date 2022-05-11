@@ -3,37 +3,56 @@
 {% block content %}
 {% if user.is_authenticated %}
 <br><br><br>
+<div class="row justify-content-center align-items-center">
+    <div class="card my-3" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; width:400px;">
+        <div class="card-body">
+            <h5 class="card-title"> <!-- kartın başslık yazısı -->
+                <br><b>Ayarlar:</b>
+                <hr color:"#696969"></hr>
+            </h5>
+            <br>
+<label for="mail" style="color:white;"><b>Uyarı Mail Adresi:</b></label><br>
 
-<label for="mail" style="color:white;">Uyarı Mail Adresi:</label><br>
+{% if mail %}
+{% for m in mail %}
+<p style="color:white">{{ m.mail }}</p>
+{% endfor %}
+{% else %}
+xxx
+{% endif %}
 
-<br><br><br><br>
+<label for="try" style="color:white;"><b>Azami İstek Sayısı:</b></label><br>
 
-<label for="mail" style="color:white;">Azami İstek Sayısı:</label><br>
+{% if try %}
+{% for t in try %}
+<p style="color:white">{{ t.trycount }}</p>
+{% endfor %}
+{% else %}
+xxx
+{% endif %}
 
-<br><br><br><br>
-
-<div class="form-group w-25" style="color:white;">
+<div class="form-group w-100" style="color:white;">
     <form action="{% url 'settings' %}" method='POST'>
         {% csrf_token %}
         <label for="mail">Uyarı Mail Adresi Değiştir:</label>
-        <br><br>
-        <input type="text" name="mail" class="form-control" style="width:200px;">
         <br>
-        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Güncelle">
+        <input type="text" name="mail" class="form-control">
+        <input type="submit" class="btn btn-danger btn-lg btn-block" name="select" value="Mail Güncelle">
     </form>
 </div>
-<br><br><br>
-<div class="form-group w-25" style="color:white;">
+<br>
+<div class="form-group w-100" style="color:white;">
     <form action="{% url 'settings' %}" method='POST'>
         {% csrf_token %}
         <label for="mail">Azami İstek Sayısı Değiştir:</label>
-        <br><br>
-        <input type="text" name="istek" class="form-control" style="width:200px;">
         <br>
-        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Güncelle">
-    </form>
+        <input type="text" name="trycount" class="form-control">
+        <input type="submit" class="btn btn-danger btn-lg btn-block" name="select" value="İstek Güncelle">
+    </form><br>
 </div>
-
+</div>
+</div>
+</div>
 <br>
 {% else %}
 <br>
