@@ -13,5 +13,6 @@ class trycount(models.Model):
     trycount = models.CharField(max_length=10)
 
 class blocklist(models.Model):
-    date = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
     ip = models.CharField(max_length=100)
+    service = models.CharField(max_length=100)

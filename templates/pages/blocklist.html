@@ -8,7 +8,7 @@
 <div class="card my-5 w-75" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>Engellenen İstemciler:</b>
+        <br><b>ENGELLENEN İSTEMCİLER:</b>
         <hr color:"#696969"></hr>
     </h5>
 
@@ -21,12 +21,20 @@
                 <thead align="center" style="color:white;">
                 <td><b>TARİH</b></td>
                 <td><b>IP ADRESİ</b></td>
+                <td><b>ENGELLİ SERVİS</b></td>
                 <td><b>ENGELİ KALDIR</b></td>
                 </thead>
              </tr>
              <tbody>
              
              <tr style="color:white;">
+                <td>deneme</td>
+                <td>deneme</td>
+                <td>deneme</td>
+                <td align="center"><form action="{% url 'blocklist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
+             </tr>
+             <tr style="color:white;">
+                <td>deneme</td>
                 <td>deneme</td>
                 <td>deneme</td>
                 <td align="center"><form action="{% url 'blocklist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
