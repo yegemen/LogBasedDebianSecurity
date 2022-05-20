@@ -10,8 +10,8 @@ def sshlist(request):
     
     sshlog.objects.all().delete()
 
-    commandone = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" -v | grep "TTY=pts/0" -v | cut -d " " -f 1,3,4,10,12 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
-    commandtwo = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" | cut -d " " -f 1,3,4,12,14 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
+    commandone = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" -v | grep "TTY=pts/0" -v | cut -d " " -f 1,2,3,9,11 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
+    commandtwo = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" | cut -d " " -f 1,2,3,11,13 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
 
     print(commandone)
     
