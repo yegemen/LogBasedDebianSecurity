@@ -29,10 +29,12 @@ def settings(request):
         return render(request, "pages/settings.html", context)
         
 
-
-
-def blocklist(request):
+def blockedlist(request):
     if request.method == 'POST':
         pass
     else:    
-        return render(request, "pages/blocklist.html")
+        blocks = blocklist.objects.all()
+        context = {
+            'blocks':  blocks
+        }
+        return render(request, "pages/blockedlist.html", context)

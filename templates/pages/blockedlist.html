@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-{% comment %} {% if log %}{% endcomment %}
+{% if blocks %}
 <br><br><br>
 <div class="row justify-content-center align-items-center">
 <div class="card my-5 w-75" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
@@ -26,21 +26,16 @@
                 </thead>
              </tr>
              <tbody>
-             
+            {% for data in blocks %}
              <tr style="color:white;">
-                <td>deneme</td>
-                <td>deneme</td>
-                <td>deneme</td>
-                <td align="center"><form action="{% url 'blocklist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
+                <td>{{data.date}}</td>
+                <td>{{data.ip}}</td>
+                <td>{{data.service}}</td>
+                <td align="center"><form action="{% url 'blockedlist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
              </tr>
-             <tr style="color:white;">
-                <td>deneme</td>
-                <td>deneme</td>
-                <td>deneme</td>
-                <td align="center"><form action="{% url 'blocklist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
-             </tr>
-             {% comment %} {% for data in log %}
-             {% endfor %}{% endcomment %}
+             {% endfor %}
+             {% comment %} 
+             {% endcomment %}
             </tbody>
         </table>
         
@@ -50,12 +45,12 @@
 </div>
 </div>
 
-{% comment %}{% else %}{% endcomment %}
+{% else %}
         <br><br><br><br>
         <b><p align="left" style="color:black;">Kayıtlı Veri Bulunmamaktadır.</p></b>
         <br><br>
         <hr color:"#696969">
-{% comment %}{% endif %}{% endcomment %}
+{% endif %}
 
 <br><br><br><br><br><br><br><br><br>
 {% else %}

@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('settings/', views.settings, name='settings'),
-    path('blocklist/', views.blocklist, name='blocklist'),
+    path('blockedlist/', views.blockedlist, name='blockedlist'),
 ]
