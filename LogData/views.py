@@ -37,7 +37,7 @@ def ftplist(request):
 
     ftplog.objects.all().delete()
 
-    command = subprocess.check_output('grep "FAIL LOGIN" /var/log/vsftpd.log | cut -d " " -f 1,2,4,5,6,9,13 | sort | uniq -c | sort', shell=True).decode("utf-8")
+    command = subprocess.check_output('grep "FAIL LOGIN" /var/log/vsftpd.log | cut -d " " -f 1,2,3,4,5,8,12 | sort | uniq -c | sort', shell=True).decode("utf-8")
     
     for data in command.splitlines():
         data = data.split()
