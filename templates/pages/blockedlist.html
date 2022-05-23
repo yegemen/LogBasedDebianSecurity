@@ -31,7 +31,7 @@
                 <td>{{data.date}}</td>
                 <td>{{data.ip}}</td>
                 <td>{{data.service}}</td>
-                <td align="center"><form action="{% url 'blockedlist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value=""></form></td>
+                <td align="center"><form action="{% url 'blockedlist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value="{{data.ip}}"><input type="hidden" name="service" value="{{data.service}}"></form></td>
              </tr>
              {% endfor %}
              {% comment %} 
