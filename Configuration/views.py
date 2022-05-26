@@ -38,7 +38,6 @@ def blockedlist(request):
 
         if service == "SSH":
             delete_rule = subprocess.check_output(f'sudo ufw delete deny proto tcp from {ip} to any port 22', shell=True)
-            delete_log = subprocess.check_output(f"sudo sed '/{ip}/d' /var/log/auth.log -i", shell=True)
 
         if service == "FTP":
             pass
