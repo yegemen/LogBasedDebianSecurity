@@ -5,7 +5,7 @@
 {% if log %}
 <br><br><br>
 
-<div class="card my-5 w-100" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
+<div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1200px;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
         <br><b>AUTHENTICATE Başarısız Denemeler:</b>
@@ -15,7 +15,7 @@
     <p class="card-text"> <!-- kartın içerik yazısı -->
         <br>
         
-        <table class="table table-bordered">
+        <table align="center" class="table table-bordered" style="width:1100px";>
 
             <tr>
                 <thead align="center" style="color:white;">
@@ -27,7 +27,7 @@
              </tr>
              <tbody>
              {% for data in log %}
-             <tr style="color:white;">
+             <tr align="center" style="color:white;">
                 <td>{{data.count}}</td>
                 <td>{{data.date}}</td>
                 <td>{{data.targetuser}}</td>

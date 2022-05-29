@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import sshlog, ftplog, authlog, httplog, fuzzinglog
-import subprocess
+import subprocess, re
 
 # Create your views here.
 
@@ -41,6 +41,7 @@ def ftplist(request):
     
     for data in command.splitlines():
         data = data.split()
+        data[7] = str(re.search(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b",data[7]).group(0))
         ftplog.objects.create(count = data[0], date = (data[1] + " " + data[2] + " " + data[3] + " " + data[4] + " " + data[5]), username = data[6], ip = data[7])
 
     log = ftplog.objects.all()
@@ -55,7 +56,7 @@ def authlist(request):
 
     authlog.objects.all().delete()
 
-    command = subprocess.check_output('grep "FAILED SU" /var/log/auth.log | cut -d " " -f 1,3,4,9,10,11 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
+    command = subprocess.check_output('grep "FAILED SU" /var/log/auth.log | cut -d " " -f 1,2,3,8,9,10 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
     
     for data in command.splitlines():
         data = data.split()
@@ -77,6 +78,7 @@ def httplist(request):
     
     for data in command.splitlines():
         data = data.split()
+        data[6] = str(re.search(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b",data[6]).group(0))
         httplog.objects.create(count = data[0], date = (data[1] + " " + data[2] + " " + data[3] + " " + data[4] + " " + data[5]), username = data[7], ip = data[6])
 
     log = httplog.objects.all()
@@ -90,11 +92,11 @@ def fuzzinglist(request):
 
     fuzzinglog.objects.all().delete()
 
-    command = subprocess.check_output('grep "404" /var/log/apache2/access.log | cut -d " " -f 1 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
+    command = subprocess.check_output('grep "404" /var/log/apache2/access.log | cut -d " " -f 1,4 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
     
     for data in command.splitlines():
         data = data.split()
-        fuzzinglog.objects.create(count = data[0], ip = data[1])
+        fuzzinglog.objects.create(count = data[0], ip = data[1], date = data[2])
 
     log = fuzzinglog.objects.all()
 

@@ -34,16 +34,18 @@ def blockedlist(request):
     if request.method == 'POST':
         ip = request.POST['noblock']
         service = request.POST['service']
-        blocklist.objects.filter(ip = ip).delete()
 
         if service == "SSH":
             delete_rule = subprocess.check_output(f'sudo ufw delete deny proto tcp from {ip} to any port 22', shell=True)
+            blocklist.objects.filter(ip = ip, service = service).delete()
 
         if service == "FTP":
-            pass
+            delete_rule = subprocess.check_output(f'sudo ufw delete deny proto tcp from {ip} to any port 21', shell=True)
+            blocklist.objects.filter(ip = ip, service = service).delete()
 
         if service == "HTTP":
-            pass
+            delete_rule = subprocess.check_output(f'sudo ufw delete deny proto tcp from {ip} to any port 80', shell=True)
+            blocklist.objects.filter(ip = ip, service = service).delete()
 
         return redirect('blockedlist')
 

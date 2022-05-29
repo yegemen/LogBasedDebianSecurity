@@ -28,4 +28,5 @@ class httplog(models.Model):
 
 class fuzzinglog(models.Model):
     count = models.CharField(max_length=15)
+    date = models.CharField(max_length=1000)
     ip = models.CharField(max_length=1000)
