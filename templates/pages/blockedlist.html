@@ -15,7 +15,7 @@
     <p class="card-text"> <!-- kartın içerik yazısı -->
         <br>
         
-        <table class="table table-bordered" style="width:900px;">
+        <table align="center" class="table table-bordered" style="width:900px;">
 
             <tr>
                 <thead align="center" style="color:white;">
@@ -27,7 +27,7 @@
              </tr>
              <tbody>
             {% for data in blocks %}
-             <tr style="color:white;">
+             <tr align="center" style="color:white;">
                 <td>{{data.date}}</td>
                 <td>{{data.ip}}</td>
                 <td>{{data.service}}</td>
@@ -47,7 +47,7 @@
 
 {% else %}
         <br><br><br><br>
-        <b><p align="left" style="color:black;">Kayıtlı Veri Bulunmamaktadır.</p></b>
+        <b><p align="left" style="color:white;">Kayıtlı Veri Bulunmamaktadır.</p></b>
         <br><br>
         <hr color:"#696969">
 {% endif %}

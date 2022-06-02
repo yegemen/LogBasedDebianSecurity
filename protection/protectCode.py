@@ -4,11 +4,12 @@ from Configuration.models import blocklist
 class protect:
     addresses = {}
 
-    def __init__(self,logfilename,error,port,service):
+    def __init__(self,logfilename,error,port,service,process):
         self.logfilename = logfilename
         self.error = error
         self.port = port
         self.service = service
+        self.process = process
     
     def monitoring(self):
         logfile = open(f"{self.logfilename}","r")
@@ -28,8 +29,10 @@ class protect:
                 if blocklist.objects.filter(ip = ip, service = f"{self.service}"):
                     pass
                 else:
+                    deny = subprocess.check_output(f'sudo killall {self.process}', shell=True)
                     deny = subprocess.check_output(f'sudo ufw insert 1 deny proto tcp from {ip} to any port {self.port}', shell=True)
                     blocklist.objects.create(ip = ip, service = f"{self.service}")
+                    deny = subprocess.check_output(f'sudo service {self.process} restart', shell=True)
                 print("engellendi.")
         else:
             self.addresses[ip] = 1
