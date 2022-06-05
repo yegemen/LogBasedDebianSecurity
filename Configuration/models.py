@@ -10,6 +10,7 @@ class mail(models.Model):
     mail = models.CharField(max_length=100)
 
 class trycount(models.Model):
+    service = models.CharField(max_length=100)
     trycount = models.CharField(max_length=10)
 
 class blocklist(models.Model):

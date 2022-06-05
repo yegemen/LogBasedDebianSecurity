@@ -16,11 +16,29 @@ def settings(request):
             email = request.POST['mail']
             mail.objects.create(mail=email)
         else:
-            trycount.objects.all().delete()
-            requesttrycount = request.POST['trycount']
-            trycount.objects.create(trycount=requesttrycount)
+            ssh = request.POST['SSH']
+            ftp = request.POST['FTP']
+            http = request.POST['HTTP']
+            if ssh == "selecting":
+                pass
+            else:
+                trycount.objects.filter(service="SSH").update(trycount=f"{ssh}")
+            if ftp == "selecting":
+                pass
+            else:
+                trycount.objects.filter(service="FTP").update(trycount=f"{ftp}")
+            if http == "selecting":
+                pass
+            else:
+                trycount.objects.filter(service="HTTP").update(trycount=f"{http}")
+            # trycount.objects.all().delete()
+            # requesttrycount = request.POST['trycount']
+            # trycount.objects.create(trycount=requesttrycount)
         return redirect('settings')
     else:   
+        deger = trycount.objects.filter(service = "SSH")
+        for d in deger:
+            print(d.trycount)
         email =  mail.objects.all()
         requesttrycount =  trycount.objects.all()
         context = {

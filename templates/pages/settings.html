@@ -11,6 +11,46 @@
                 <hr color:"#696969"></hr>
             </h5>
             <br>
+
+
+
+<div class="form-group w-100" style="color:white;">
+    <form action="{% url 'settings' %}" method='POST'>
+            {% csrf_token %}
+            {% if try %}
+            {% for t in try %}
+            <label for="try" style="color:white;"><b>Azami İstek Sayısı ({{ t.service }}):</b> &nbsp;&nbsp;&nbsp; {{ t.trycount }} </label>
+            <select name="{{t.service}}" class="form-select form-select-sm" style="width:100px">
+                <option value="selecting">Seçiniz</option>
+                <option value="2">2</option> 
+                <option value="3">3</option>
+                <option value="4">4</option> 
+                <option value="5">5</option>
+                <option value="6">6</option> 
+                <option value="7">7</option>
+                <option value="8">8</option> 
+                <option value="9">9</option>
+                <option value="10">10</option> 
+                <option value="11">11</option>
+                <option value="12">12</option> 
+                <option value="13">13</option> 
+                <option value="14">14</option>
+                <option value="15">15</option> 
+                <option value="16">16</option>
+                <option value="17">17</option> 
+                <option value="18">18</option>
+                <option value="19">19</option> 
+                <option value="20">20</option>
+            </select> <br>
+            {% endfor %}
+            {% else %}
+            xxx
+            {% endif %}
+            
+            <input type="submit" class="btn btn-danger btn-lg btn-block" name="select" value="İstek Güncelle">
+    </form><br>
+</div>
+<br>
 <label for="mail" style="color:white;"><b>Uyarı Mail Adresi:</b></label><br>
 
 {% if mail %}
@@ -21,35 +61,17 @@
 xxx
 {% endif %}
 
-<label for="try" style="color:white;"><b>Azami İstek Sayısı:</b></label><br>
-
-{% if try %}
-{% for t in try %}
-<p style="color:white">{{ t.trycount }}</p>
-{% endfor %}
-{% else %}
-xxx
-{% endif %}
 
 <div class="form-group w-100" style="color:white;">
     <form action="{% url 'settings' %}" method='POST'>
         {% csrf_token %}
-        <label for="mail">Uyarı Mail Adresi Değiştir:</label>
+        <label for="mail"><b>Uyarı Mail Adresi Değiştir:</b></label>
         <br>
-        <input type="text" name="mail" class="form-control">
+        <input type="text" name="mail" class="form-control"><br>
         <input type="submit" class="btn btn-danger btn-lg btn-block" name="select" value="Mail Güncelle">
     </form>
 </div>
 <br>
-<div class="form-group w-100" style="color:white;">
-    <form action="{% url 'settings' %}" method='POST'>
-        {% csrf_token %}
-        <label for="mail">Azami İstek Sayısı Değiştir:</label>
-        <br>
-        <input type="text" name="trycount" class="form-control">
-        <input type="submit" class="btn btn-danger btn-lg btn-block" name="select" value="İstek Güncelle">
-    </form><br>
-</div>
 </div>
 </div>
 </div>
@@ -60,5 +82,3 @@ xxx
 {% endif %}
 
 {% endblock %}
-
-
