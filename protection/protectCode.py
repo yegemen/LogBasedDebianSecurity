@@ -4,12 +4,13 @@ from Configuration.models import blocklist
 class protect:
     addresses = {}
 
-    def __init__(self,logfilename,error,port,service,process):
+    def __init__(self,logfilename,error,port,service,process,requestcount):
         self.logfilename = logfilename
         self.error = error
         self.port = port
         self.service = service
         self.process = process
+        self.requestcount = requestcount
     
     def monitoring(self):
         logfile = open(f"{self.logfilename}","r")
@@ -25,7 +26,7 @@ class protect:
         global addresses
         if self.addresses.get(ip):
             self.addresses[ip] += 1
-            if self.addresses[ip] >= 5:
+            if self.addresses[ip] >= int(self.requestcount):
                 if blocklist.objects.filter(ip = ip, service = f"{self.service}"):
                     pass
                 else:
