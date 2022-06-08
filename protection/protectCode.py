@@ -1,7 +1,12 @@
 import time, os, subprocess, re
-from Configuration.models import blocklist
+from Configuration.models import blocklist, mail
+import smtplib
 
 class protect:
+
+    mailaddress = mail.objects.all()
+    for m in mailaddress:
+        mailaddr = m.mail
     addresses = {}
 
     def __init__(self,logfilename,error,port,service,process,requestcount):
@@ -34,6 +39,8 @@ class protect:
                     deny = subprocess.check_output(f'sudo ufw insert 1 deny proto tcp from {ip} to any port {self.port}', shell=True)
                     blocklist.objects.create(ip = ip, service = f"{self.service}")
                     deny = subprocess.check_output(f'sudo service {self.process} restart', shell=True)
+                    #global mailaddr
+                    #self.send_email(f"{self.mailaddr}", "password", f"Subject: IP {self.service} Servisinden Engellendi \n\n {ip} Adresi engellenmistir.")
                 print("engellendi.")
         else:
             self.addresses[ip] = 1
@@ -51,3 +58,10 @@ class protect:
                 continue
 
             yield line
+
+    def send_email(self,email,password,message):
+        email_server = smtplib.SMTP("smtp-mail.outlook.com",587)
+        email_server.starttls()
+        email_server.login(email,password)
+        email_server.sendmail(email,email,message)
+        email_server.quit()
