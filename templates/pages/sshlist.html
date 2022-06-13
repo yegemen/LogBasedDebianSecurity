@@ -5,7 +5,40 @@
 {% if log %}
 <br><br><br>
 
-<div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1200px;">
+<div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1000px;">
+    <div class="card-body">
+    <h5 class="card-title"> <!-- kartın başslık yazısı -->
+        <br><b>SSH Servisine Başarısız Denemeler (Özet Tablo):</b>
+        <hr color:"#696969"></hr>
+    </h5>
+
+    <p class="card-text"> <!-- kartın içerik yazısı -->
+        <br>
+        
+        <table align="center" class="table table-bordered" style="width:900px;">
+
+            <tr>
+                <thead align="center" style="color:white;">
+                <td><b>TOPLAM</b></td>
+                <td><b>KAYNAK IP</b></td>
+                </thead>
+             </tr>
+             <tbody>
+             {% for data in sumlog %}
+             <tr align="center" style="color:white;">
+                <td>{{data.sumcount}}</td>
+                <td>{{data.ip}}</td>
+             </tr>
+             {% endfor %}
+            </tbody>
+        </table>
+        
+    </p>
+
+    </div>
+</div>
+
+<div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1000px;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
         <br><b>SSH Servisine Başarısız Denemeler:</b>
@@ -15,7 +48,7 @@
     <p class="card-text"> <!-- kartın içerik yazısı -->
         <br>
         
-        <table align="center" class="table table-bordered" style="width:1100px;">
+        <table align="center" class="table table-bordered" style="width:900px;">
 
             <tr>
                 <thead align="center" style="color:white;">
@@ -44,12 +77,11 @@
 
 {% else %}
         <br><br><br><br>
-        <b><p align="left" style="color:black;">Kayıtlı Veri Bulunmamaktadır.</p></b>
+        <b><p align="left" style="color:white;">Kayıtlı Veri Bulunmamaktadır.</p></b>
         <br><br>
         <hr color:"#696969">
 {% endif %}
 
-<br><br><br><br><br><br><br><br><br>
 {% else %}
 <br>
 <h1> Hata ! </h1>

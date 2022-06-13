@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import sshlog, ftplog, authlog, httplog, fuzzinglog
+from .models import sshlog, ftplog, authlog, httplog, fuzzinglog, summaryssh, summaryftp, summaryhttp, summaryfuzzing, summaryauth
 import subprocess, re
 
 # Create your views here.
@@ -9,9 +9,11 @@ import subprocess, re
 def sshlist(request):
     
     sshlog.objects.all().delete()
+    summaryssh.objects.all().delete()
 
     commandone = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" -v | grep "TTY=pts/0" -v | cut -d " " -f 1,2,3,9,11 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
     commandtwo = subprocess.check_output('grep "Failed password for" /var/log/auth.log | grep "invalid user" | cut -d " " -f 1,2,3,11,13 | sort | uniq -c | sort -rn', shell=True).decode("utf-8")
+    commandthree = subprocess.check_output('( (grep "Failed password for" /var/log/auth.log | grep "invalid user" -v | grep "TTY=pts/0" -v | cut -d " " -f 11) && (grep "Failed password for" /var/log/auth.log | grep "invalid user" | cut -d " " -f 13) ) | grep "Failed" -v | sort | uniq -c | sort -rn', shell=True).decode('utf-8')
 
     print(commandone)
     
@@ -25,10 +27,16 @@ def sshlist(request):
         print(data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + data[4] + " " + data[5])
         sshlog.objects.create(count = data[0], date = (data[1] + " " + data[2] + " " + data[3]), username = data[4], ip = data[5])
 
+    for data in commandthree.splitlines():
+        data = data.split()
+        summaryssh.objects.create(sumcount = data[0], ip = data[1])
+
     log = sshlog.objects.all()
+    sumlog = summaryssh.objects.all()
 
     context = {
-        'log': log
+        'log': log,
+        'sumlog': sumlog
     }
 
     return render(request, "pages/sshlist.html", context)

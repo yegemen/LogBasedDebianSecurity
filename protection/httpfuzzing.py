@@ -1,7 +1,7 @@
 from protection import protectCode
 from Configuration.models import trycount
 
-deger = trycount.objects.filter(service = "HTTP")
+deger = trycount.objects.filter(service = "HTTP Fuzzing")
 for d in deger:
     count = d.trycount
 
