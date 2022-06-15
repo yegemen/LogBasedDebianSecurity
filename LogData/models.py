@@ -33,14 +33,17 @@ class fuzzinglog(models.Model):
 
 class summaryssh(models.Model):
     sumcount = models.CharField(max_length=15)
+    username = models.CharField(max_length=1000)
     ip = models.CharField(max_length=1000)
 
 class summaryftp(models.Model):
     sumcount = models.CharField(max_length=15)
+    username = models.CharField(max_length=1000)
     ip = models.CharField(max_length=1000)
 
 class summaryhttp(models.Model):
     sumcount = models.CharField(max_length=15)
+    username = models.CharField(max_length=1000)
     ip = models.CharField(max_length=1000)
 
 class summaryfuzzing(models.Model):
@@ -49,4 +52,5 @@ class summaryfuzzing(models.Model):
 
 class summaryauth(models.Model):
     sumcount = models.CharField(max_length=15)
-    ip = models.CharField(max_length=1000)
+    targetuser = models.CharField(max_length=1000)
+    resourceuser = models.CharField(max_length=1000)

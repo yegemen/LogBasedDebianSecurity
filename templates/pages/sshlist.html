@@ -8,7 +8,7 @@
 <div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1000px;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>SSH Servisine Başarısız Denemeler (Özet Tablo):</b>
+        <br><b>SSH Servisine Başarısız Denemeler (Özet):</b>
         <hr color:"#696969"></hr>
     </h5>
 
@@ -19,8 +19,9 @@
 
             <tr>
                 <thead align="center" style="color:white;">
-                <td><b>TOPLAM</b></td>
+                <td><b>DENEME</b></td>
                 <td><b>KAYNAK IP</b></td>
+                <td><b>KULLANICI ADI</b></td>
                 </thead>
              </tr>
              <tbody>
@@ -28,6 +29,7 @@
              <tr align="center" style="color:white;">
                 <td>{{data.sumcount}}</td>
                 <td>{{data.ip}}</td>
+                <td>{{data.username}}</td>
              </tr>
              {% endfor %}
             </tbody>
