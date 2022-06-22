@@ -18,7 +18,8 @@ def settings(request):
         else:
             ssh = request.POST['SSH']
             ftp = request.POST['FTP']
-            http = request.POST['HTTP']
+            httplogin = request.POST['HTTP Login']
+            httpfuzzing = request.POST['HTTP Fuzzing']
             if ssh == "selecting":
                 pass
             else:
@@ -27,10 +28,14 @@ def settings(request):
                 pass
             else:
                 trycount.objects.filter(service="FTP").update(trycount=f"{ftp}")
-            if http == "selecting":
+            if httplogin == "selecting":
                 pass
             else:
-                trycount.objects.filter(service="HTTP").update(trycount=f"{http}")
+                trycount.objects.filter(service="HTTP Login").update(trycount=f"{httplogin}")
+            if httpfuzzing == "selecting":
+                pass
+            else:
+                trycount.objects.filter(service="HTTP Fuzzing").update(trycount=f"{httpfuzzing}")
         return redirect('settings')
     else:   
         email =  mail.objects.all()
