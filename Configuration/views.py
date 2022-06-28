@@ -11,10 +11,12 @@ import subprocess
 def settings(request):
     if request.method == 'POST':
         select = request.POST['select']
-        if select == "Mail Güncelle":
+        if select == "Update Mail":
             mail.objects.all().delete()
             email = request.POST['mail']
-            mail.objects.create(mail=email)
+            mailpass = request.POST['mailpass']
+            mail.objects.create(mail = email, password = mailpass)
+
         else:
             ssh = request.POST['SSH']
             ftp = request.POST['FTP']

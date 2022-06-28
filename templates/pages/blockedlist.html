@@ -8,7 +8,7 @@
 <div class="card my-5 w-75" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>ENGELLENEN İSTEMCİLER:</b>
+        <br><b>BLOCKED CLIENT:</b>
         <hr color:"#696969"></hr>
     </h5>
 
@@ -19,10 +19,10 @@
 
             <tr>
                 <thead align="center" style="color:white;">
-                <td><b>TARİH</b></td>
-                <td><b>IP ADRESİ</b></td>
-                <td><b>ENGELLİ SERVİS</b></td>
-                <td><b>ENGELİ KALDIR</b></td>
+                <td><b>DATE</b></td>
+                <td><b>IP ADDRESS</b></td>
+                <td><b>BLOCKED SERVICE</b></td>
+                <td><b>REMOVE BLOCK</b></td>
                 </thead>
              </tr>
              <tbody>
@@ -31,7 +31,7 @@
                 <td>{{data.date}}</td>
                 <td>{{data.ip}}</td>
                 <td>{{data.service}}</td>
-                <td align="center"><form action="{% url 'blockedlist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="ENGELİ KALDIR"><input type="hidden" name="noblock" value="{{data.ip}}"><input type="hidden" name="service" value="{{data.service}}"></form></td>
+                <td align="center"><form action="{% url 'blockedlist' %}" method='POST'>{% csrf_token %}<input type="submit" class="btn btn-danger" value="REMOVE BLOCK"><input type="hidden" name="noblock" value="{{data.ip}}"><input type="hidden" name="service" value="{{data.service}}"></form></td>
              </tr>
              {% endfor %}
              {% comment %} 
@@ -47,7 +47,7 @@
 
 {% else %}
         <br><br><br><br>
-        <b><p align="left" style="color:white;">Kayıtlı Veri Bulunmamaktadır.</p></b>
+        <b><p align="left" style="color:white;">No Recorded Data.</p></b>
         <br><br>
         <hr color:"#696969">
 {% endif %}
@@ -55,7 +55,7 @@
 <br><br><br><br><br><br><br><br><br>
 {% else %}
 <br>
-<h1> Hata ! </h1>
+<h1> Error ! </h1>
 {% endif %}
 
 {% endblock %}

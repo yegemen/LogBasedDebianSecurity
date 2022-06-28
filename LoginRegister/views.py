@@ -18,7 +18,7 @@ def login(request):
             #messages.add_message(request, messages.SUCCESS, "Oturum Açıldı")
             return redirect('select')
         else:
-            messages.add_message(request, messages.ERROR, "Hatalı Giriş !")
+            messages.add_message(request, messages.ERROR, "Error !")
             return redirect('login')
     else:
         return render(request, 'pages/login.html')
@@ -38,12 +38,12 @@ def register(request):
             # veritabanında aynı kullanıcı var mı diye bakıyorum. eğer varsa true bilgi gelir.
             if User.objects.filter(username=username).exists():
                 messages.add_message(
-                    request, messages.WARNING, "Bu Kullanıcı Adı Daha Önce Alınmış.")
+                    request, messages.WARNING, "This Username Has Been Taken Before.")
                 return redirect('register')
             else:
                 if User.objects.filter(email=email).exists():
                     messages.add_message(
-                        request, messages.WARNING, "Bu E-Mail Daha Önce Alınmış.")
+                        request, messages.WARNING, "This E-Mail Has Been Received Before.")
                     return redirect('register')
                 else:
                     # herşey tamam
@@ -51,12 +51,12 @@ def register(request):
                         username=username, password=password, email=email)  # burda veritabanına kullanıcı bilgilerini gönderdim.
                     user.save()
                     messages.add_message(
-                        request, messages.SUCCESS, "Hesabınız Oluşturuldu.")
+                        request, messages.SUCCESS, "Your Account Has Been Created.")
                     return redirect('login')
 
         else:
             messages.add_message(request, messages.WARNING,
-                                 "Parolalar Uyuşmuyor.")
+                                 "Passwords Do Not Match.")
             return redirect('register')
 
     else:
@@ -69,5 +69,5 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         messages.add_message(request, messages.SUCCESS,
-                             'Oturumunuz kapatıldı.')
+                             'Your session has been closed.')
         return redirect('login')

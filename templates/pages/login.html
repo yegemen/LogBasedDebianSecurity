@@ -13,7 +13,7 @@
             <div class="card my-5 w-25" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white;">
                 <div class="card-body">
                 <h5 class="card-title"> <!-- kartın başlık yazısı -->
-                    Giriş Yapın
+                    Login
                 </h5>
 
                 <p class="card-text"> <!-- kartın içerik yazısı -->
@@ -22,13 +22,13 @@
                     <div class="form-group">
                         <form action="{% url 'login' %}" method='POST'>
                             {% csrf_token %}
-                        <label for="name">Kullanıcı Adı:</label>
+                        <label for="name">Username:</label>
 			            <input type="text" name="username" class="form-control">
                         <br>
-                        <label for="password">Parola:</label>
+                        <label for="password">Password:</label>
 			            <input type="password" name="password" class="form-control">
                         <br>
-                        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Giriş">
+                        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Login">
                         </form>
                     </div>
                     

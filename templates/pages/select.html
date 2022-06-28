@@ -28,16 +28,16 @@
 
 <br><br>
 
-<a href="{% url 'settings' %}" class="btn btn-danger btn-lg btn-block" value="settings" style="width:200px;">Ayarlar</a>
+<a href="{% url 'settings' %}" class="btn btn-danger btn-lg btn-block" value="settings" style="width:200px;">Settings</a>
 
 <br><br>
 
-<a href="{% url 'blockedlist' %}" class="btn btn-danger btn-lg btn-block" value="blockedlist" style="width:200px;">Engellenenler</a>
+<a href="{% url 'blockedlist' %}" class="btn btn-danger btn-lg btn-block" value="blockedlist" style="width:200px;">Blocked</a>
 
 <br><br>
 {% else %}
 <br>
-<h1> Hata ! </h1>
+<h1> Error ! </h1>
 {% endif %}
 
 {% endblock %}

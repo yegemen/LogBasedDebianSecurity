@@ -8,7 +8,7 @@
 <div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1000px;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>SSH Servisine Başarısız Denemeler (Özet):</b>
+        <br><b>Failed attempts to SSH (Total):</b>
         <hr color:"#696969"></hr>
     </h5>
 
@@ -19,9 +19,9 @@
 
             <tr>
                 <thead align="center" style="color:white;">
-                <td><b>DENEME</b></td>
-                <td><b>KAYNAK IP</b></td>
-                <td><b>KULLANICI ADI</b></td>
+                <td><b>ATTEMPTS</b></td>
+                <td><b>SOURCE IP</b></td>
+                <td><b>USERNAME</b></td>
                 </thead>
              </tr>
              <tbody>
@@ -43,7 +43,7 @@
 <div class="card my-5" style="background-color:#696969; border-color:#A52A2A; border-width:10px; color:white; margin:auto; width:1000px;">
     <div class="card-body">
     <h5 class="card-title"> <!-- kartın başslık yazısı -->
-        <br><b>SSH Servisine Başarısız Denemeler:</b>
+        <br><b>Failed attempts to SSH:</b>
         <hr color:"#696969"></hr>
     </h5>
 
@@ -54,10 +54,10 @@
 
             <tr>
                 <thead align="center" style="color:white;">
-                <td><b>DENEME</b></td>
-                <td><b>TARİH</b></td>
-                <td><b>KAYNAK IP</b></td>
-                <td><b>KULLANICI ADI</b></td>
+                <td><b>ATTEMPTS</b></td>
+                <td><b>DATE</b></td>
+                <td><b>SOURCE IP</b></td>
+                <td><b>USERNAME</b></td>
                 </thead>
              </tr>
              <tbody>
@@ -79,14 +79,14 @@
 
 {% else %}
         <br><br><br><br>
-        <b><p align="left" style="color:white;">Kayıtlı Veri Bulunmamaktadır.</p></b>
+        <b><p align="left" style="color:white;">No Recorded Data.</p></b>
         <br><br>
         <hr color:"#696969">
 {% endif %}
 
 {% else %}
 <br>
-<h1> Hata ! </h1>
+<h1> Error ! </h1>
 {% endif %}
 
 {% endblock %}

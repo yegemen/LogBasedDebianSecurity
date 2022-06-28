@@ -7,6 +7,7 @@ class protect:
     mailaddress = mail.objects.all()
     for m in mailaddress:
         mailaddr = m.mail
+        mailpass = m.password
     addresses = {}
 
     def __init__(self,logfilename,error,port,service,process,requestcount):
@@ -39,8 +40,8 @@ class protect:
                     deny = subprocess.check_output(f'sudo ufw insert 1 deny proto tcp from {ip} to any port {self.port}', shell=True)
                     blocklist.objects.create(ip = ip, service = f"{self.service}")
                     deny = subprocess.check_output(f'sudo service {self.process} restart', shell=True)
-                    #global mailaddr
-                    #self.send_email(f"{self.mailaddr}", "password", f"Subject: IP {self.service} Servisinden Engellendi \n\n {ip} Adresi engellenmistir.")
+                    #global mailaddr, mailpass
+                    #self.send_email(f"{self.mailaddr}", f"{self.mailpass}", f"Subject: IP {self.service} Servisinden Engellendi \n\n {ip} Adresi engellenmistir.")
                 print("engellendi.")
         else:
             self.addresses[ip] = 1

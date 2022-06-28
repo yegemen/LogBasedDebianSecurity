@@ -9,7 +9,7 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">( {{ user.username }} )  Çıkış Yap</a>
+                            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">( {{ user.username }} )  Logout</a>
                             <form action="{% url 'logout' %}" method="POST" id="logout">
                                     {%csrf_token%}
                                     <input type="hidden">  
@@ -17,10 +17,10 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="{% url 'login' %}" class="nav-link">Giriş</a>
+                            <a href="{% url 'login' %}" class="nav-link">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'register' %}" class="nav-link">Kayıt Ol</a>
+                            <a href="{% url 'register' %}" class="nav-link">Register</a>
                         </li>
                     {% endif %}
                     

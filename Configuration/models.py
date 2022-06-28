@@ -8,6 +8,7 @@ class settings(models.Model):
 
 class mail(models.Model):
     mail = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
 
 class trycount(models.Model):
     service = models.CharField(max_length=100)
