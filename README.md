@@ -28,7 +28,10 @@ Debian security based on log tracking
 
 - Use of blocking programs (python or python3):
 
-`python manage.py shell < protection/ssh.py`
-`python manage.py shell < protection/ftp.py`
-`python manage.py shell < protection/httplogin.py`
-`python manage.py shell < protection/httpfuzzing.py`
+  `python manage.py shell < protection/ssh.py`
+  
+  `python manage.py shell < protection/ftp.py`
+  
+  `python manage.py shell < protection/httplogin.py`
+  
+  `python manage.py shell < protection/httpfuzzing.py`
