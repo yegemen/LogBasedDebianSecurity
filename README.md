@@ -12,6 +12,16 @@ Debian security based on log tracking
 
 - Tested on Ubuntu 20.04 LTS.
 
+- UFW is used in the application.
+
+  `sudo ufw enable`
+  
+  `sudo ufw allow 21`
+  
+  `sudo ufw allow 22`
+  
+  `sudo ufw allow 80`
+
 - Installing necessary python modules: 
 
   `pip install -r requirements.txt`
